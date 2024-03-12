@@ -305,7 +305,7 @@ class DeviceMemoryTracker {
 
   void TrackActivityInternal(CUpti_Activity* record);
   bool UpdateMemoryTypeUsage(
-      CUpti_ActivityMemory3* memory_record, const bool is_allocation,
+      CUpti_ActivityMemory2* memory_record, const bool is_allocation,
       int64_t* memory_usage, uint32_t usage_len);
 
   std::mutex mtx_;
