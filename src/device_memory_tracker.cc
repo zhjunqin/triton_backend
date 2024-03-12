@@ -237,7 +237,7 @@ DeviceMemoryTracker::TrackActivityInternal(CUpti_Activity* record)
 {
   switch (record->kind) {
     case CUPTI_ACTIVITY_KIND_MEMORY2: {
-      CUpti_ActivityMemory3* memory_record = (CUpti_ActivityMemory3*)record;
+      CUpti_ActivityMemory2* memory_record = (CUpti_ActivityMemory2*)record;
       TRITONBACKEND_CuptiTracker* usage = nullptr;
       {
         std::lock_guard<std::mutex> lk(mtx_);
@@ -310,7 +310,7 @@ DeviceMemoryTracker::TrackActivityInternal(CUpti_Activity* record)
 
 inline bool
 DeviceMemoryTracker::UpdateMemoryTypeUsage(
-    CUpti_ActivityMemory3* memory_record, const bool is_allocation,
+    CUpti_ActivityMemory2* memory_record, const bool is_allocation,
     int64_t* memory_usage, uint32_t usage_len)
 {
   if (memory_record->deviceId >= usage_len) {
